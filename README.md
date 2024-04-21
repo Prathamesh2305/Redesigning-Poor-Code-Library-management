@@ -15,7 +15,6 @@ This Library Management System is a simple command-line application to manage bo
 You will need Python installed on your system to run this Library Management System. Clone the repository and navigate to the directory:
 
 ```bash
-git clone https://github.com/yourusername/library-management-system.git
-cd library-management-system
+https://github.com/Prathamesh2305/Redesigning-Poor-Code-Library-management-/blob/main/README.md
 
  
