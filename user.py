@@ -1,43 +1,32 @@
-from models import User
 from storage import save_to_file, load_from_file
 
-users = load_from_file('users.json')
+class User:
+    """A class representing a user of the library.
 
-def add_user(user_id, name):
-    """Add a new user to the library system.
-
-    Args:
+    Attributes:
         user_id (str): The unique identifier for the user.
         name (str): The name of the user.
-
-    Creates a new user object and appends it to the list of users. The list is then
-    saved to the JSON file to update the persistent storage.
     """
-    new_user = User(user_id, name)
-    users.append(new_user)
-    save_to_file(users, 'users.json')
+    def __init__(self, user_id, name):
+        self.user_id = user_id
+        self.name = name
 
-def find_user(user_id):
-    """Find a user by their user ID.
+class UserManager:
+    """A class to manage users in the library system."""
 
-    Args:
-        user_id (str): The unique identifier for the user to find.
+    def __init__(self):
+        self.users = load_from_file('users.json')
 
-    Returns:
-        User: The user object if found, None otherwise.
+    def add_user(self, user_id, name):
+        """Add a new user to the library system."""
+        new_user = User(user_id, name)
+        self.users.append(new_user)
+        save_to_file(self.users, 'users.json')
 
-    This function searches through the list of users and returns the user object
-    if the ID matches. If no user is found with the given ID, it returns None.
-    """
-    return next((user for user in users if user.user_id == user_id), None)
+    def find_user(self, user_id):
+        """Find a user by their user ID."""
+        return next((user for user in self.users if user.user_id == user_id), None)
 
-def list_users():
-    """List all users in the library system.
-
-    Returns:
-        list: A list of all user objects.
-
-    This function returns a list of all user objects currently stored in the system.
-    Each user object includes the user's ID and name.
-    """
-    return users
+    def list_users(self):
+        """List all users in the library system."""
+        return self.users
