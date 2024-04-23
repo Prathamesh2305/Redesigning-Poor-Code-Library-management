@@ -1,8 +1,10 @@
-from book import add_book, list_books
-from user import add_user, list_users
-from check import check_out_book, check_in_book
+from book import BookManager
+from user import UserManager
 
 def main_menu():
+    book_manager = BookManager()
+    user_manager = UserManager()
+
     while True:
         print("\n1. Add Book")
         print("2. List Books")
@@ -17,28 +19,28 @@ def main_menu():
             title = input("Enter book title: ")
             author = input("Enter book author: ")
             isbn = input("Enter book ISBN: ")
-            add_book(title, author, isbn)
+            book_manager.add_book(title, author, isbn)
             print("Book added.")
         elif choice == '2':
-            for book in list_books():
+            for book in book_manager.list_books():
                 print(f"{book.title}, {book.author}, {book.isbn}, {'Available' if book.available else 'Checked out'}")
         elif choice == '3':
             user_id = input("Enter user ID: ")
             name = input("Enter user name: ")
-            add_user(user_id, name)
+            user_manager.add_user(user_id, name)
             print("User added.")
         elif choice == '4':
-            for user in list_users():
+            for user in user_manager.list_users():
                 print(f"{user.user_id}: {user.name}")
         elif choice == '5':
             isbn = input("Enter book ISBN to check out: ")
             user_id = input("Enter user ID: ")
-            result = check_out_book(isbn, user_id)
+            result = book_manager.check_out_book(isbn, user_id)
             print(result)
         elif choice == '6':
             isbn = input("Enter book ISBN to check in: ")
             user_id = input("Enter user ID: ")
-            result = check_in_book(isbn, user_id)
+            result = book_manager.check_in_book(isbn, user_id)
             print(result)
         elif choice == '7':
             print("Exiting the system.")
