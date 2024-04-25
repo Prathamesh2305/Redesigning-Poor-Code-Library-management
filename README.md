@@ -7,7 +7,6 @@ This Library Management System is a simple command-line application to manage bo
 
 - **Manage Books**: Add, list, find, check-in, and check out books using their ISBN.
 - **Manage Users**: Add and list library users with unique identifiers.
-- **Persistent Storage**: Uses JSON files to store and retrieve data about books and users.
 - **Simple CLI**: Command-line interface for interaction with the system.
 
 ## Installation
